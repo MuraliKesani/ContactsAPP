@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9616F465227ACE85000BE95D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9616F464227ACE85000BE95D /* TableViewCell.swift */; };
 		962861A22279907900511E27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962861A12279907900511E27 /* AppDelegate.swift */; };
 		962861A72279907900511E27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 962861A52279907900511E27 /* Main.storyboard */; };
 		962861AA2279907900511E27 /* ContactsAPP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 962861A82279907900511E27 /* ContactsAPP.xcdatamodeld */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9616F464227ACE85000BE95D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		9628619E2279907900511E27 /* ContactsAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactsAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		962861A12279907900511E27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		962861A62279907900511E27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			children = (
 				962861A12279907900511E27 /* AppDelegate.swift */,
 				962861D22279962E00511E27 /* ContactsList.swift */,
+				9616F464227ACE85000BE95D /* TableViewCell.swift */,
 				962861D42279964300511E27 /* AddContact.swift */,
 				962861D62279965B00511E27 /* UpdateContact.swift */,
 				962861A52279907900511E27 /* Main.storyboard */,
@@ -268,6 +271,7 @@
 				962861D52279964300511E27 /* AddContact.swift in Sources */,
 				962861D72279965B00511E27 /* UpdateContact.swift in Sources */,
 				962861A22279907900511E27 /* AppDelegate.swift in Sources */,
+				9616F465227ACE85000BE95D /* TableViewCell.swift in Sources */,
 				962861AA2279907900511E27 /* ContactsAPP.xcdatamodeld in Sources */,
 				962861D32279962E00511E27 /* ContactsList.swift in Sources */,
 			);

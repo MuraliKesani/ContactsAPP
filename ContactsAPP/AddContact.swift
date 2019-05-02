@@ -8,7 +8,8 @@
 
 import UIKit
 import CoreData
-
+var moc:NSManagedObjectContext!
+ var entity:NSEntityDescription!
 class AddContact: UIViewController {
     
     @IBOutlet var contactFirstNameTF: UITextField!
@@ -22,11 +23,11 @@ class AddContact: UIViewController {
     
     var imagePicker = UIImagePickerController()
     
-    var moc:NSManagedObjectContext!
-    var entity:NSEntityDescription!
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         imagePicker.delegate = self
         countryList()
         createPickerView()
@@ -36,6 +37,9 @@ class AddContact: UIViewController {
         moc = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     }
     
+    @IBAction func onCancekButtonTap(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
     @IBAction func onDoneButtonTap(_ sender: UIBarButtonItem) {
         
         entity = NSEntityDescription.entity(forEntityName: "Contacts", in: moc)
@@ -46,10 +50,10 @@ class AddContact: UIViewController {
         mo.setValue(Int64(contactMobileNOTF.text!), forKey: "mobile")
         mo.setValue(contactEmailIDTF.text, forKey: "email")
         mo.setValue(contactCountryTF.text, forKey: "country")
-//        if let contactPic = contactImage.image?.jpegData(compressionQuality: 1.0){
-//            mo.setValue(contactPic, forKey: "profilePic")
-//            print("Image Is saved")
-//        }
+        if let contactPic = contactImage.image?.jpegData(compressionQuality: 1.0){
+            mo.setValue(contactPic, forKey: "image")
+            print("Image Is saved")
+        }
         do{
             try moc.save()
             print("Data is Saved TO CoreData")
