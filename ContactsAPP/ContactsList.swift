@@ -16,7 +16,9 @@ var emailIDArray = [String]()
 var countryArray = [String]()
 var contactDP = [UIImage]()
 
-//var contactsArray:[NSManagedObject] = []
+var data:String = ""
+
+var contactsArray:[NSManagedObject] = []
 
 class ContactsList: UIViewController {
     
@@ -25,12 +27,13 @@ class ContactsList: UIViewController {
     @IBOutlet var contactsListTV: UITableView!
     
     var addContact:AddContact!
+    var updateContact:UpdateContact!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         contactsListTV.tableFooterView = UIView.init(frame: .zero)
         contactsListTV.backgroundColor = #colorLiteral(red: 0.6084219403, green: 1, blue: 0.6925783085, alpha: 1)
-        firstNameArray.sort()
+//        firstNameArray.sort()
         moc = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         entity = NSEntityDescription.entity(forEntityName: "Contacts", in: moc)
         
@@ -107,5 +110,47 @@ extension ContactsList : UITableViewDelegate,UITableViewDataSource{
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        updateContact = self.storyboard?.instantiateViewController(withIdentifier: "UpdateContact") as! UpdateContact
+        
+        self.present(updateContact, animated: true) {
+            
+            self.updateContact.firstNameTF.text = firstNameArray[indexPath.row]
+            self.updateContact.surnameTF.text  = surNameArray[indexPath.row]
+            self.updateContact.mobileNOTF.text = "\(mobileNOArray[indexPath.row])"
+            self.updateContact.emaiIDTF.text  = emailIDArray[indexPath.row]
+            self.updateContact.countryTF.text = countryArray[indexPath.row]
+            self.updateContact.contactPic.image = contactDP[indexPath.row]
+            
+            data = firstNameArray[indexPath.row]
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let delteAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: "Delete") { (action, indexPath) in
+            
+            let contactFetch:NSFetchRequest = Contacts.fetchRequest()
+            contactFetch.predicate = NSPredicate(format: "firstname = %@", firstNameArray[indexPath.row])
+            do{
+                let contactFetchObj = try moc.fetch(contactFetch)
+                for items in contactFetchObj{
+                    moc.delete(items)
+                }
+                try moc.save()
+                self.dataFetching()
+                self.contactsListTV.reloadData()
+            }catch{
+                print(error)
+            }
+        }
+        let cancelAction = UITableViewRowAction.init(style: .normal, title: "Cancel") { (rowAction, IndexPath) in
+            print("cancel")
+        }
+        delteAction.backgroundColor = #colorLiteral(red: 1, green: 0.06543179506, blue: 0, alpha: 1)
+        cancelAction.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        return [cancelAction,delteAction]
+        
+    }
     
 }

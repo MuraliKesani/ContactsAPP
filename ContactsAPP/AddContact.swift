@@ -40,7 +40,7 @@ class AddContact: UIViewController {
     @IBAction func onCancekButtonTap(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
-    @IBAction func onDoneButtonTap(_ sender: UIBarButtonItem) {
+    @IBAction func onSaveButtonTap(_ sender: UIBarButtonItem) {
         
         entity = NSEntityDescription.entity(forEntityName: "Contacts", in: moc)
         
@@ -61,6 +61,7 @@ class AddContact: UIViewController {
         catch{
             print("Something Went Wrong")
         }
+        dismiss(animated: true, completion: nil)
         
     }
     
